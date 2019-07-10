@@ -501,6 +501,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # }}}
 
 # Media {{{
+# Create input surface on the framework side
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.stagefright.c2inputsurface=-1
+
 # Disable OMX
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.media.omx=0
