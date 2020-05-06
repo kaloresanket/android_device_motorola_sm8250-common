@@ -4,6 +4,22 @@ allow init fsg_file:dir mounton;
 allow init fsg_file:filesystem { getattr mount relabelfrom unmount };
 allow init firmware_file:filesystem unmount;
 
+# For mount tracefs tracefs /sys/kernel/tracing
+allow init debugfs_tracing_debug:dir mounton;
+allow init same_process_hal_file:file execute;
+
+allow init proc_last_kmsg:file {
+  r_file_perms
+  setattr
+};
+
+# Allow init to set read_ahead_kb on /data partition
+allow init vendor_sysfs_scsi_host:file w_file_perms;
+allow init adsprpcd_file:file mounton;
+
+# Allow Vendor_init set Props
+set_prop(vendor_init, vendor_radio_prop)
+
 # Allow init to access loop devices
 allow init loop_device:blk_file { create setattr unlink };
 allowxperm init loop_device:blk_file ioctl {

@@ -15,6 +15,8 @@ type vendor_persist_fps_file, file_type, vendor_persist_type;
 
 # Input Devices
 type vendor_sysfs_input, sysfs_type, fs_type;
+type public_adsprpcd_file, file_type;
+type proc_last_kmsg, fs_type, proc_type;
 
 # Motorola
 type proc_moto_boot, proc_type, fs_type;
