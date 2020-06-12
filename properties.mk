@@ -35,7 +35,7 @@ ro.telephony.block_binder_thread_on_incoming_calls=false \
 vendor.display.qdcm.mode_combine=1 \
 debug.renderengine.backend=skiaglthreaded
 
-# recorded		
+# recorded
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.apptype.multirec.enabled=false
 
@@ -223,6 +223,7 @@ vendor.audio.feature.external_speaker.enable=false \
 vendor.audio.feature.external_speaker_tfa.enable=false \
 vendor.audio.feature.fluence.enable=true \
 vendor.audio.feature.fm.enable=true \
+debug.sf.disable_client_composition_cache=1 \
 vendor.audio.feature.hdmi_edid.enable=true \
 vendor.audio.feature.hdmi_passthrough.enable=true \
 vendor.audio.feature.hfp.enable=true \
