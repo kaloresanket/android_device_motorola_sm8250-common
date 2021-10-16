@@ -31,7 +31,14 @@ qcom.hw.aac.encoder=true
 #
 persist.vendor.cne.feature=1
 
-#system props for the MM modules
+# Iorap
+persist.device_config.runtime_native_boot.iorap_readahead_enable=true
+
+# system props for the MM modules
+media.aac_51_output_enabled=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-http=true
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
 media.stagefright.enable-aac=true
