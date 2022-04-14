@@ -198,6 +198,11 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
+# Charger
+PRODUCT_PACKAGES += \
+    libsuspend \
+    charger_res_images
+
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
