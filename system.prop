@@ -234,6 +234,9 @@ ro.lmk.kill_timeout_ms=15
 # LMK
 ro.config.low_ram=false
 
+# Zygote preforking
+persist.device_config.runtime_native.usap_pool_enabled=true
+
 # Graphics
 debug.hwui.renderer=skiagl
 debug.renderengine.backend=skiaglthreaded
