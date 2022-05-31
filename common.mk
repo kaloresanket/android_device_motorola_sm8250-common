@@ -290,6 +290,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.memtrack-service
 
 PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # DRM
 PRODUCT_PACKAGES += \
