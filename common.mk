@@ -446,6 +446,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libcodec2_hidl@1.0.vendor \
+    android.hardware.media.c2@1.0.vendor
     libcodec2_vndk.vendor \
     libOmxAacEnc \
     libOmxAmrEnc \
