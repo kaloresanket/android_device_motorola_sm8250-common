@@ -8,6 +8,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.ambisonic.capture=false \
 persist.vendor.audio.ambisonic.auto.profile=false \
 debug.sf.auto_latch_unsignaled=0 \
+debug.sf.disable_backpressure=1 \
 ro.surface_flinger.enable_frame_rate_override=false
 
 # Adaptive Suspend
@@ -226,7 +227,7 @@ vendor.audio.feature.external_speaker.enable=false \
 vendor.audio.feature.external_speaker_tfa.enable=false \
 vendor.audio.feature.fluence.enable=true \
 vendor.audio.feature.fm.enable=true \
-debug.sf.disable_client_composition_cache=1 \
+debug.sf.disable_client_composition_cache=0 \
 vendor.audio.feature.hdmi_edid.enable=true \
 vendor.audio.feature.hdmi_passthrough.enable=true \
 vendor.audio.feature.hfp.enable=true \
