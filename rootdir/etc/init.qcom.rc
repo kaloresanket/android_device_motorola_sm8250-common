@@ -42,6 +42,9 @@ on early-init
     symlink /vendor/bt_firmware /bt_firmware
     symlink /vendor/dsp /dsp
 
+    # Disable UFS clock scaling
+    write /sys/bus/platform/devices/${ro.boot.bootdevice}/clkscale_enable 0
+
   # Change ownership of hw_recovery related nodes
     chown system graphics /sys/kernel/debug/dri/0/debug/dump
     chown system graphics /sys/kernel/debug/dri/0/debug/recovery_reg
@@ -73,6 +76,9 @@ on init
     # Enable idle state listener
     write /sys/class/drm/card0/device/idle_encoder_mask 1
     write /sys/class/drm/card0/device/idle_timeout_ms 100
+
+    # Disable UFS powersaving
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 0    
 
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
@@ -502,6 +508,12 @@ on property:sys.boot_completed=1
 
     # This initializes vendor.qti.hardware.perf service
     setprop vendor.post_boot.parsed 1
+
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
+
+    # Enable UFS powersaving
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1    
 
 on property:persist.vendor.radio.atfwd.start=false
     stop vendor.atfwd
