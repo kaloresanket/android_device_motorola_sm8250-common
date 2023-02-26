@@ -39,3 +39,7 @@ install_symlink {
     installed_location: "firmware/aw_cali.bin",
     symlink_target: "/mnt/vendor/persist/factory/audio/aw_cali.bin",
 }
+
+cc_library_shared {
+    name: "libldacBT_bco",
+}
