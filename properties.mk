@@ -88,7 +88,8 @@ ro.vendor.audio.sdk.ssr=false
 
 #enable dsp gapless mode by default
 PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.offload.gapless.enabled=true
+vendor.audio.offload.gapless.enabled=true \
+ro.audio.monitorRotation=true
 
 #timeout crash duration set to 20sec before system is ready.
 #timeout duration updates to default timeout of 5sec once the system is ready.
