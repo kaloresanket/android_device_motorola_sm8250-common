@@ -417,6 +417,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += vendor.display.enable_async_powermode=1
 # }}}
 
+# FS-verity
+PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
+
 # DPM {{{
 PRODUCT_PROPERTY_OVERRIDES += persist.vendor.dpmhalservice.enable=1
 PRODUCT_SYSTEM_EXT_PROPERTIES += persist.vendor.dpm.feature=11
