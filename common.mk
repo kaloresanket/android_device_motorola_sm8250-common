@@ -72,6 +72,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# PocketMode
+PRODUCT_PACKAGES += \
+    PocketMode
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/pocket/privapp-permissions-pocketmode.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-pocketmode.xml
+
 # Properties
 $(call inherit-product, $(LOCAL_PATH)/properties.mk)
 
