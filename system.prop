@@ -32,8 +32,11 @@ qcom.hw.aac.encoder=true
 #
 persist.vendor.cne.feature=1
 
-# Iorap
-persist.device_config.runtime_native_boot.iorap_readahead_enable=true
+# App launch prefetching (IORapd)
+ro.iorapd.enable=false
+iorapd.perfetto.enable=false
+iorapd.readahead.enable=false
+persist.device_config.runtime_native_boot.iorap_readahead_enable=false
 
 # system props for the MM modules
 media.aac_51_output_enabled=true
