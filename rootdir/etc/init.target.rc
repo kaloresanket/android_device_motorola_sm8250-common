@@ -170,3 +170,7 @@ service dcvs-sh /vendor/bin/init.qti.dcvs.sh
 
 on property:vendor.dcvs.prop=1
    start dcvs-sh
+   
+on property:sys.boot_completed=1 
+   # STOP EATING MY BATTERY AFTER 100H OF UPTIME FUCK YOU
+   stop statsd
