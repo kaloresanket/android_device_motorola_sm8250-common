@@ -350,7 +350,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Display {{{
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.vulkan=adreno \
-    ro.hardware.egl=adreno
+    ro.hardware.egl=adreno \
+    ro.hwui.render_ahead=5
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.kona.api30 \
