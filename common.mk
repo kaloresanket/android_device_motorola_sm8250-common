@@ -484,6 +484,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
+# Viper
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+
 # VNDK
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
 
