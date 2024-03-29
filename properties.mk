@@ -510,6 +510,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.enable_temp_dds=true
 # }}}
 
+#Test harmon kardon
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.audio.sfx.earadj=true \
+ro.vendor.audio.sfx.harmankardon=true \
+ro.vendor.audio.sfx.scenario=true
+
 # Sensors {{{
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sensors.sync_request=true \
