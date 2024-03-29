@@ -6,18 +6,39 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ##Ambisonic Capture
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.ambisonic.capture=false \
-persist.vendor.audio.ambisonic.auto.profile=false
+persist.vendor.audio.ambisonic.auto.profile=false \
+debug.sf.auto_latch_unsignaled=0 \
+ro.surface_flinger.enable_frame_rate_override=false
 
+# FUSE passthrough
+PRODUCT_PROPERTY_OVERRIDES += \
+persist.sys.fuse.passthrough.enable=true
+
+# Multi-Gen LRU
+PRODUCT_PROPERTY_OVERRIDES += \
+persist.device_config.mglru_native.lru_gen_config=core
+
+##Colors
+PRODUCT_PROPERTY_OVERRIDES += \
+vendor.display.qdcm.disable_factory_mode=1 \
+ro.telephony.block_binder_thread_on_incoming_calls=false \
+vendor.display.qdcm.mode_combine=1
+
+#recorded
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.apptype.multirec.enabled=false
 
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.vendor.audio.sdk.fluencetype=none\
-persist.vendor.audio.fluence.voicecall=true\
-persist.vendor.audio.fluence.voicerec=false\
-persist.vendor.audio.fluence.speaker=true\
+ro.vendor.audio.sdk.fluencetype=none \
+persist.vendor.audio.fluence.voicecall=true \
+persist.vendor.audio.fluence.voicerec=true \
+persist.vendor.audio.fluence.speaker=true \
 persist.vendor.audio.fluence.tmic.enabled=false
+
+# Pre-rendering
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.perf.scroll_opt=true
 
 ##speaker protection v3 switch and ADSP AFE API version
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -318,12 +339,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.physical.num=5
 # }}}
 
-# Dalvik {{{
-$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
+# Dalvik
+$(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-threads=6 \
-    dalvik.vm.dex2oat64.enabled=true
-# }}}
+    dalvik.vm.dex2oat-threads=8 \
+    dalvik.vm.dex2oat64.enabled=true \
+    dalvik.vm.dex2oat-filter=speed
 
 # Display {{{
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -337,8 +358,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
-    persist.sys.sf.color_mode=2 \
-    persist.sys.sf.native_mode=1 \
+    persist.sys.sf.color_mode=9 \
+    persist.sys.sf.native_mode=2 \
     debug.sf.hw=0 \
     debug.egl.hw=0 \
     debug.sf.latch_unsignaled=1 \
@@ -361,9 +382,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.enable_advanced_sf_phase_offset=1 \
-    debug.sf.high_fps_late_sf_phase_offset_ns=-4000000 \
+    debug.sf.high_fps_late_sf_phase_offset_ns=-2000000 \
     debug.sf.high_fps_early_phase_offset_ns=-4000000 \
-    debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
+    debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
 
 #Set WCG properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.has_wide_color_display=true
@@ -371,16 +392,16 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.has_HDR_display=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.wcg_composition_dataspace=143261696
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=200
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=4000
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.display.idle_time=0 \
+    vendor.display.idle_time=4000 \
     vendor.display.disable_idle_time_hdr=1 \
     vendor.display.disable_idle_time_video=1
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.set_idle_timer_ms=80 \
+    ro.surface_flinger.set_idle_timer_ms=4000 \
     ro.surface_flinger.use_content_detection_for_refresh_rate=true
 
 # Recovery is enabled, logging is disabled
@@ -455,6 +476,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.custom_ecc=1 \
+    persist.sys.radio.force_lte_ca=true \
     persist.vendor.radio.procedure_bytes=SKIP \
     persist.vendor.radio.rat_on=combine
 
@@ -475,7 +497,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.lte_vrte_ltd=1 \
     persist.vendor.radio.sw_mbn_update=0 \
     persist.vendor.radio.sar_sensor=1 \
+    debug.sdm.support_writeback=0 \
     persist.vendor.radio.fi_supported=0 \
+    persist.radio.vendor.NO_STAPA=1 \
+    persist.radio.vendor.VT_HYBRID_ENABLE=1 \
     persist.vendor.radio.data_ltd_sys_ind=1 \
     ro.vendor.radio.imei.sv=1
 
