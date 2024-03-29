@@ -326,6 +326,9 @@
         <item>0</item> <!-- COLOR_MODE_DEFAULT    -->
         <item>9</item> <!-- COLOR_MODE_DISPLAY_P3 -->
     </integer-array>
+    
+    <!-- Whether the new Auto Selection Network UI should be shown -->
+    <bool name="config_enableNewAutoSelectNetworkUI">true</bool>
 
     <!-- The default refresh rate for a given device. If a non-zero value is set for
          config_defaultPeakRefreshRate, then config_defaultRefreshRate may be set to 0, in that case
