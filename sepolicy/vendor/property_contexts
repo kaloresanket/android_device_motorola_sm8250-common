@@ -2,7 +2,17 @@
 vendor.camera.coming.cts   u:object_r:vendor_camera_prop:s0
 
 # Radio
-vendor.ril.                u:object_r:vendor_radio_prop:s0
+vendor.ril.                			  u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.RATE_ADAPT_ENABLE          u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.ROTATION_ENABLE            u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.VT_ENABLE                  u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.VT_HYBRID_ENABLE           u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.NO_STAPA                   u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.videopause.mode            u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.smlog_switch               u:object_r:vendor_radio_prop:s0
+persist.vendor.radio.dynamic_sar                u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.log_loc                         u:object_r:vendor_radio_prop:s0
+ro.vendor.radio.log_prefix                      u:object_r:vendor_radio_prop:s0
 
 # Motorola
 ro.vendor.hw.              u:object_r:vendor_mot_hw_prop:s0
