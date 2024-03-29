@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Setup dalvik vm configs
+$(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)
+
 BOARD_SHIPPING_API_LEVEL := 30
 BOARD_API_LEVEL := 30
 PRODUCT_SHIPPING_API_LEVEL := 30
