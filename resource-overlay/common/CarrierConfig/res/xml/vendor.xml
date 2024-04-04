@@ -680,6 +680,47 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="404" mnc="02,03,10,16,31,40,45,49,70,90,92,93,94,95,96,97,98">
         <boolean name="carrier_vt_available_bool" value="true" />
     </carrier_config>
+    
+    <carrier_config mcc="404">
+        <boolean name="config_update_multiparty_state" value="false"/>
+        <boolean name="carrier_volte_available_bool" value="true"/>
+        <boolean name="carrier_vt_available_bool" value="true"/>
+        <boolean name="vonr_enabled_bool" value="true" />
+        <boolean name="editable_wfc_mode_bool" value="true"/>
+        <boolean name="disable_emulating_single_party_call_bool" value="true"/>
+        <boolean name="config_editable_wfc_when_calling" value="false"/>
+        <boolean name="config_video_supp_service" value="true"/>
+    </carrier_config>
+    
+    <carrier_config mcc="404" mnc="01,05,11,13,15,20,27,30,43,46,60,84,86,88">
+        <int name="carrier_default_wfc_ims_mode_int" value="2"/>
+        <boolean name="vonr_enabled_bool" value="true" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="editable_wfc_mode_bool" value="false"/>
+        <boolean name="hide_wfc_mode_option" value="true"/>
+        <boolean name="wos_flight_mode_support_bool" value="true"/>
+    </carrier_config>
+    
+    <carrier_config mcc="404" mnc="22,24,07,78,04,12,56,19,89,87,82,44,14">
+        <int name="carrier_default_wfc_ims_mode_int" value="2"/>
+        <boolean name="vonr_enabled_bool" value="true" />
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="editable_wfc_mode_bool" value="false"/>
+        <boolean name="hide_wfc_mode_option" value="true"/>
+        <boolean name="wos_flight_mode_support_bool" value="true"/>
+    </carrier_config>
+    
+    <carrier_config mcc="404" mnc="02,03,10,16,31,40,45,49,70,90,92,93,94,95,96,97,98">
+        <int name="carrier_default_wfc_ims_mode_int" value="2"/>
+        <boolean name="editable_wfc_mode_bool" value="false"/>
+        <boolean name="hide_wfc_mode_option" value="true"/>
+        <boolean name="carrier_default_wfc_ims_enabled_bool" value="true"/>
+        <boolean name="mtk_carrier_wfc_get_location_always" value="true"/>
+    </carrier_config>
+    
+    <!--印度 IN Airtel-->
+    <carrier_config mcc="404" mnc="02,03,10,16,31,40,45,49,70,90,92,93,94,95,96,97,98">
+        <boolean name="carrier_wfc_ims_available_bool" value="true" />
 
     <carrier_config mcc="405" mnc="840">
         <boolean name="carrier_vt_available_bool" value="true" />
