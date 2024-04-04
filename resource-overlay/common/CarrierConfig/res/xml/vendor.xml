@@ -721,6 +721,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <!--印度 IN Airtel-->
     <carrier_config mcc="404" mnc="02,03,10,16,31,40,45,49,70,90,92,93,94,95,96,97,98">
         <boolean name="carrier_wfc_ims_available_bool" value="true" />
+    </carrier_config>
 
     <carrier_config mcc="405" mnc="840">
         <boolean name="carrier_vt_available_bool" value="true" />
