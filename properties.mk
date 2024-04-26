@@ -360,9 +360,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Camera {{{
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.expose.aux=1 \
-    persist.vendor.camera.physical.num=5
-# }}}
-
+    persist.vendor.camera.physical.num=4 \
+    persist.camera.HAL3.enabled=1 \
+    persist.camera.gyro.disable=0 \
+    persist.vendor.camera.is_type=4
 # Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-8192-dalvik-heap.mk)
 PRODUCT_PROPERTY_OVERRIDES += \
