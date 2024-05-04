@@ -11,6 +11,17 @@ debug.sf.auto_latch_unsignaled=0 \
 debug.sf.disable_backpressure=1 \
 ro.surface_flinger.enable_frame_rate_override=false
 
+# Audio
+persist.vendor.audio.spatializer.speaker_enabled=true
+ro.audio.spatializer_enabled=true
+af.resampler.quality=7
+ro.audio.resampler.psd.stopband=132
+ro.audio.resampler.psd.halflength=960
+ro.audio.resampler.psd.cutoff_percent=98
+ro.audio.resampler.psd.tbwcheat=0
+ro.audio.usb.period_us=20375
+persist.bluetooth.sbc_hd_higher_bitrate=1
+
 # Adaptive Suspend
 PRODUCT_SYSTEM_PROPERTIES += \
 suspend.max_sleep_time_millis=40000 \
