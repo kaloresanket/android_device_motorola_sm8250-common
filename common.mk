@@ -537,7 +537,8 @@ PRODUCT_COPY_FILES += \
 
 # USB HAL
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti \
+    android.hardware.usb@1.3-service.dual_role_usb \
+    android.hardware.usb.gadget@1.2-service-qti \
     init.qcom.usb.rc \
     init.qcom.usb.sh
 
@@ -550,7 +551,8 @@ PRODUCT_PACKAGES += \
 vendor.qti.hardware.vibrator.service
 
 PRODUCT_COPY_FILES += \
-    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml					 
+    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
 # vndservicemanager has been removed from API30 devices (aosp/1235751)
 # but we still need it for display services.
 PRODUCT_PACKAGES += \
@@ -568,8 +570,7 @@ PRODUCT_PACKAGES += \
     libsensorndkbridge
 # Seccomp policy
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy																											   
-
+	$(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
@@ -618,7 +619,8 @@ PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
 
 # Viper
-$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)	   
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+
 # VNDK
 PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
 
