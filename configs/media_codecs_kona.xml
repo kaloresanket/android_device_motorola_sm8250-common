@@ -186,6 +186,7 @@ Only the three quirks included above are recognized at this point:
     <Include href="media_codecs_vendor_c2_audio.xml" />
     <Include href="media_codecs_google_c2_telephony.xml" />
     <Settings>
+        <Domain name="telephony" enabled="true" />
         <Setting name="max-video-encoder-input-buffers" value="11" />
     </Settings>
     <Encoders>
@@ -488,5 +489,4 @@ Only the three quirks included above are recognized at this point:
              <Limit name="performance-point-1920x1080" value="30" />
         </MediaCodec>
     </Decoders>
-    <Include href="media_codecs_google_video.xml" />
 </MediaCodecs>
