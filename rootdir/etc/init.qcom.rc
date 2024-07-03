@@ -948,3 +948,10 @@ service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
     class hal
     user system
     group system input
+
+service surfaceflinger /system/bin/surfaceflinger
+    class main
+    user system
+    group graphics drmrpc
+    capabilities SYS_NICE
+    writepid /dev/cpuset/system-background/tasks
