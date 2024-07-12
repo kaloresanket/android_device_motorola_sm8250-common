@@ -154,6 +154,11 @@ LOC_HIDL_VERSION := 4.0
 # Global Optimization
 TARGET_GLOBAL_OPTIMIZATION := O3
 
+# Global LTO
+TARGET_GLOBAL_LTO := thin
+TARGET_GLOBAL_OPTIMIZATION := O3
+TARGET_GLOBAL_THINLTO := true
+
 # Lineage Health
 ifneq ($(wildcard hardware/*/interfaces/health),)
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
