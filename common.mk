@@ -199,6 +199,8 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     libyuv.vendor:64 \
     libcamera2ndk_vendor \
+    libpiex \
+    libpiex_shim \
     libutilscallstack.vendor \
     vendor.qti.hardware.camera.aon@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
@@ -560,6 +562,10 @@ PRODUCT_COPY_FILES += \
 # Telephony
 PRODUCT_PACKAGES += \
     MotoNrEnabler \
+    extphonelib \
+    extphonelib-product \
+    extphonelib.xml \
+    extphonelib_product.xml \
     ims-ext-common \
     ims_ext_common.xml \
     qti-telephony-hidl-wrapper \
@@ -568,6 +574,8 @@ PRODUCT_PACKAGES += \
     qti_telephony_hidl_wrapper_prd.xml \
     qti-telephony-utils \
     qti_telephony_utils.xml \
+    qti-telephony-utils-prd \
+    qti_telephony_utils_prd.xml \
     telephony-ext
 
 PRODUCT_BOOT_JARS += \
@@ -615,7 +623,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libavservices_minijail \
     libnl \
-	libavservices_minijail_vendor \
+    libavservices_minijail_vendor \
     libpng.vendor \
     libwfdaac_vendor
 
