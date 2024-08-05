@@ -44,12 +44,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ro.vendor.audio.sdk.fluencetype=none\
 persist.vendor.audio.fluence.voicecall=true\
 persist.vendor.audio.fluence.voicerec=false\
-persist.vendor.audio.fluence.speaker=true\
+persist.vendor.audio.fluence.speaker=false\
 persist.vendor.audio.fluence.tmic.enabled=false
 
 #test for aux Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-vendor.camera.aux.packagelist=com.snapchat.android \
+persist.vendor.camera.logInfoMask=false
+vendor.camera.aux.packagelist=com.snapchat.android,com.ss.android.ugc.aweme,org.codeaurora.snapcam \
 persist.vendor.camera.privapp.list=org.lineageos.aperture,com.ss.android.ugc.aweme,org.codeaurora.snapcam
 
 # Pre-rendering
