@@ -32,3 +32,4 @@ vendor.hw.touch.           u:object_r:vendor_mot_touch_prop:s0
 persist.vendor.hardware.fingerprint            u:object_r:vendor_mot_fingerprint_prop:s0
 vendor.hw.fps.ident                            u:object_r:vendor_mot_fingerprint_prop:s0
 vendor.hw.fingerprint.status                   u:object_r:vendor_mot_fingerprint_prop:s0
+

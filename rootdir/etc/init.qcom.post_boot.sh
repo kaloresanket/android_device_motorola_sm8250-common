@@ -812,6 +812,12 @@ KernelVersionA=${KernelVersionStr:0:1}
 KernelVersionB=${KernelVersionS%.*}
 
 function configure_zram_parameters() {
+    # Moto huangzq2: Skip this if we are using zram from fstab.
+    using_zram_from_fstab=`getprop ro.boot.using_zram_from_fstab`
+    if [ "$using_zram_from_fstab" == "true" ]; then
+        return
+    fi
+
     MemTotalStr=`cat /proc/meminfo | grep MemTotal`
     MemTotal=${MemTotalStr:16:8}
 
@@ -941,15 +947,16 @@ function configure_memory_parameters() {
     # Set allocstall_threshold to 0 for all targets.
     #
 
-ProductName=`getprop ro.board.platform`
+BoardPlatform=`getprop ro.board.platform`
 low_ram=`getprop ro.config.low_ram`
 
-if [ "$ProductName" == "msmnile" ] || [ "$ProductName" == "kona" ] || [ "$ProductName" == "sdmshrike_au" ]; then
+if [ "$BoardPlatform" == "msmnile" ] || [ "$BoardPlatform" == "kona" ] || [ "$BoardPlatform" == "lito" ] || [ "$BoardPlatform" == "sdmshrike_au" ]; then
       # Enable ZRAM
       configure_zram_parameters
       configure_read_ahead_kb_values
-      echo 0 > /proc/sys/vm/page-cluster
-      echo 100 > /proc/sys/vm/swappiness
+      # Moto huangzq2: Remove duplicate configs as we already set it in init.mmi.rc
+      #echo 0 > /proc/sys/vm/page-cluster
+      #echo 100 > /proc/sys/vm/swappiness
 else
     arch_type=`uname -m`
 
@@ -995,7 +1002,7 @@ else
         else
             # Set LMK series, vmpressure_file_min for 32 bit non-go targets.
             # Disable Core Control, enable KLMK for non-go 8909.
-            if [ "$ProductName" == "msm8909" ]; then
+            if [ "$BoardPlatform" == "msm8909" ]; then
                 disable_core_ctl
                 echo 1 > /sys/module/lowmemorykiller/parameters/enable_lmk
             fi
@@ -2199,8 +2206,8 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu7/online
 
                 #Disable CPU retention modes for 32bit builds
-                ProductName=`getprop ro.product.name`
-                if [ "$ProductName" == "msm8952_32" ] || [ "$ProductName" == "msm8952_32_LMT" ]; then
+                BoardPlatform=`getprop ro.board.platform`
+                if [ "$BoardPlatform" == "msm8952_32" ] || [ "$BoardPlatform" == "msm8952_32_LMT" ]; then
                     echo N > /sys/module/lpm_levels/system/a72/cpu4/retention/idle_enabled
                     echo N > /sys/module/lpm_levels/system/a72/cpu5/retention/idle_enabled
                     echo N > /sys/module/lpm_levels/system/a72/cpu6/retention/idle_enabled
@@ -2571,7 +2578,7 @@ case "$target" in
             echo 633600 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
             # cpuset settings
-            echo 0-1 > /dev/cpuset/background/cpus
+            echo 0-3 > /dev/cpuset/background/cpus
             echo 0-3 > /dev/cpuset/system-background/cpus
             # choose idle CPU for top app tasks
             echo 1 > /dev/stune/top-app/schedtune.prefer_idle
@@ -3849,15 +3856,6 @@ case "$target" in
         soc_id=`cat /sys/devices/soc0/soc_id`
     fi
 
-    echo 2 > /dev/stune/schedtune.window_policy
-    echo 3 > /dev/stune/background/schedtune.window_policy
-    echo 2 > /dev/stune/foreground/schedtune.window_policy
-    echo 2 > /dev/stune/top-app/schedtune.window_policy
-
-	echo 1 > /dev/stune/background/schedtune.discount_wait_time
-	echo 1 > /dev/stune/background/schedtune.ed_task_filter
-	echo 1 > /dev/stune/background/schedtune.top_task_filter
-
     case "$soc_id" in
         "400" | "440" | "476" )
         # Core control parameters on silver
@@ -3867,6 +3865,7 @@ case "$target" in
         echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
         echo 8 > /sys/devices/system/cpu/cpu0/core_ctl/task_thres
         echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+        echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
         # Disable Core control on gold, prime
         echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/enable
@@ -3937,7 +3936,7 @@ case "$target" in
              echo 1075200 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
              echo 1152000 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_freq
              echo 1401600 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-             echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+             echo 614400 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
              echo 652800 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
              echo 806400 > /sys/devices/system/cpu/cpufreq/policy7/scaling_min_freq
              echo 83 > /proc/sys/kernel/sched_asym_cap_sibling_freq_match_pct
@@ -4015,7 +4014,12 @@ case "$target" in
         setprop vendor.dcvs.prop 1
 
         # cpuset parameters
-        echo 0-3 > /dev/cpuset/background/cpus
+        # Enable corectrl on needed targets
+        if [ "$corectl_enable" == "true" ]; then
+            echo 0-3 > /dev/cpuset/background/cpus
+        else
+            echo 0-5 > /dev/cpuset/background/cpus
+        fi
         echo 0-5 > /dev/cpuset/system-background/cpus
 
         # Turn off scheduler boost at the end
@@ -4031,7 +4035,13 @@ case "$target" in
         "434" | "459" )
 
         # Core control parameters on silver
-        echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
+        corectl_enable=`getprop ro.vendor.config.corectl`
+        # Enable corectrl on needed targets
+        if [ "$corectl_enable" == "true" ]; then
+            echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
+        else
+            echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+        fi
         echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
         echo 60 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
         echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
@@ -4161,6 +4171,12 @@ case "$target" in
         # device/target specific folder
         setprop vendor.dcvs.prop 1
 
+        # moto add by yangbq2, set wsf value as 1
+        # Disable wsf for all targets beacause we are using efk.
+        # wsf Range : 1..1000 So set to bare minimum value 1.
+        echo 1 > /proc/sys/vm/watermark_scale_factor
+        # moto end
+
         # cpuset parameters
         echo 0-5 > /dev/cpuset/background/cpus
         echo 0-5 > /dev/cpuset/system-background/cpus
@@ -4172,6 +4188,14 @@ case "$target" in
         echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
       ;;
     esac
+
+    # Log kernel wake-up source
+    echo 1 > /sys/module/msm_show_resume_irq/parameters/debug_mask
+
+    # Log kernel enabled clock before suspend
+    if [ -f /sys/kernel/debug/clk/debug_suspend ]; then
+        echo 1 > /sys/kernel/debug/clk/debug_suspend
+    fi
 esac
 
 case "$target" in
@@ -4386,6 +4410,10 @@ case "$target" in
             # Turn off scheduler boost at the end
             echo 0 > /proc/sys/kernel/sched_boost
 
+	    echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/idle_enabled
+	    echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/idle_enabled
+	    echo N > /sys/module/lpm_levels/system/pwr/pwr-l2-gdhs/suspend_enabled
+            echo N > /sys/module/lpm_levels/system/perf/perf-l2-gdhs/suspend_enabled
             # Turn on sleep modes
             echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
@@ -5317,14 +5345,11 @@ case "$target" in
 		echo 85 85 > /proc/sys/kernel/sched_downmigrate
 		echo 100 > /proc/sys/kernel/sched_group_upmigrate
 		echo 10 > /proc/sys/kernel/sched_group_downmigrate
-		echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
 		echo 0-3 > /dev/cpuset/background/cpus
 		echo 0-3 > /dev/cpuset/system-background/cpus
 
 
-		# Turn off scheduler boost at the end
-		echo 0 > /proc/sys/kernel/sched_boost
 
 		# configure governor settings for silver cluster
 		echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
@@ -5413,8 +5438,12 @@ case "$target" in
 				echo 0 > $npubw/bw_hwmon/idle_mbps
 		                echo 40 > $npubw/polling_interval
 				echo 0 > /sys/devices/virtual/npu/msm_npu/pwr
-	    done
-	done
+	                      done
+	           done
+	fi
+	# Turn off scheduler boost at the end
+	echo 0 > /proc/sys/kernel/sched_boost
+	echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
 
 	# memlat specific settings are moved to seperate file under
 	# device/target specific folder
@@ -5462,7 +5491,6 @@ case "$target" in
 			configure_automotive_sku_parameters
 		   fi
 		fi
-	fi
     ;;
 esac
 
@@ -5743,6 +5771,7 @@ case "$target" in
 	echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
 
 	# cpuset parameters
+	# Use parameters in init.target.rc
 	echo 0-3 > /dev/cpuset/background/cpus
 	echo 0-3 > /dev/cpuset/system-background/cpus
 
@@ -5758,12 +5787,12 @@ case "$target" in
 	else
 		echo 1228800 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
 	fi
-	echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
+	echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 	echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
 
 	# configure input boost settings
 	echo "0:1324800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-	echo 40 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+	echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
 
 	# configure governor settings for gold cluster
 	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
@@ -5782,23 +5811,6 @@ case "$target" in
 		echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
 	fi
 	echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
-
-	echo 2 > /dev/stune/schedtune.window_policy
-	echo 3 > /dev/stune/background/schedtune.window_policy
-	echo 2 > /dev/stune/foreground/schedtune.window_policy
-	echo 2 > /dev/stune/top-app/schedtune.window_policy
-	echo 80 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/target_loads
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/above_hispeed_delay
-	echo 80 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/target_loads
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/above_hispeed_delay
-	echo "80 2841600:99" > /sys/devices/system/cpu/cpufreq/policy7/schedutil/target_loads
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/above_hispeed_delay
-
-	echo 1 > /dev/stune/background/schedtune.discount_wait_time
-	echo 1 > /dev/stune/background/schedtune.ed_task_filter
-	echo 1 > /dev/stune/background/schedtune.top_task_filter
-
-	echo 156 > /proc/sys/kernel/sched_min_task_util_for_colocation
 
 	# Enable bus-dcvs
 	for device in /sys/devices/platform/soc
@@ -5883,6 +5895,7 @@ case "$target" in
 	setprop vendor.dcvs.prop 1
     echo N > /sys/module/lpm_levels/parameters/sleep_disabled
     configure_memory_parameters
+
     ;;
 esac
 

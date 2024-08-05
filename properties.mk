@@ -10,6 +10,15 @@ persist.vendor.audio.ambisonic.auto.profile=false \
 debug.sf.auto_latch_unsignaled=0 \
 ro.surface_flinger.enable_frame_rate_override=false
 
+# Adaptive Suspend
+PRODUCT_SYSTEM_PROPERTIES += \
+suspend.max_sleep_time_millis=40000 \
+suspend.short_suspend_backoff_enabled=true \
+suspend.short_suspend_threshold_millis=2000
+
+# Filesystem
+PRODUCT_PROPERTY_OVERRIDES += fs_mgr.overlayfs.prefer_cache_backing_storage=true
+
 # FUSE passthrough
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.sys.fuse.passthrough.enable=true
@@ -21,25 +30,31 @@ persist.device_config.mglru_native.lru_gen_config=core
 ##Colors
 PRODUCT_PROPERTY_OVERRIDES += \
 vendor.display.qdcm.disable_factory_mode=1 \
+ro.boot.theme=1 \
 ro.telephony.block_binder_thread_on_incoming_calls=false \
-vendor.display.qdcm.mode_combine=1
+vendor.display.qdcm.mode_combine=1 \
+debug.renderengine.backend=skiaglthreaded
 
-#recorded
+# recorded		
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.apptype.multirec.enabled=false
 
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.vendor.audio.sdk.fluencetype=none \
-persist.vendor.audio.fluence.voicecall=true \
-persist.vendor.audio.fluence.voicerec=true \
-persist.vendor.audio.fluence.speaker=true \
+ro.vendor.audio.sdk.fluencetype=none\
+persist.vendor.audio.fluence.voicecall=true\
+persist.vendor.audio.fluence.voicerec=false\
+persist.vendor.audio.fluence.speaker=true\
 persist.vendor.audio.fluence.tmic.enabled=false
+
+#test for aux Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+vendor.camera.aux.packagelist=com.snapchat.android \
+persist.vendor.camera.privapp.list=org.lineageos.aperture,com.ss.android.ugc.aweme,org.codeaurora.snapcam
 
 # Pre-rendering
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.vendor.perf.scroll_opt=true
-
 ##speaker protection v3 switch and ADSP AFE API version
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.spv3.enable=true\
@@ -88,8 +103,7 @@ ro.vendor.audio.sdk.ssr=false
 
 #enable dsp gapless mode by default
 PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.offload.gapless.enabled=true \
-ro.audio.monitorRotation=true
+vendor.audio.offload.gapless.enabled=true
 
 #timeout crash duration set to 20sec before system is ready.
 #timeout duration updates to default timeout of 5sec once the system is ready.
@@ -187,6 +201,7 @@ persist.vendor.bt.aac_vbr_frm_ctl.enabled=true
 
 #add dynamic feature flags here
 PRODUCT_PROPERTY_OVERRIDES += \
+debug.sf.enable_transaction_tracing=false \
 vendor.audio.feature.a2dp_offload.enable=true \
 vendor.audio.feature.afe_proxy.enable=true \
 vendor.audio.feature.anc_headset.enable=false \
@@ -194,11 +209,12 @@ vendor.audio.feature.battery_listener.enable=true \
 vendor.audio.feature.compr_cap.enable=false \
 vendor.audio.feature.compress_in.enable=true \
 vendor.audio.feature.compress_meta_data.enable=true \
-vendor.audio.feature.compr_voip.enable=false \
+vendor.audio.feature.compr_voip.enable=true \
 vendor.audio.feature.concurrent_capture.enable=true \
 vendor.audio.feature.custom_stereo.enable=true \
 vendor.audio.feature.display_port.enable=true \
 vendor.audio.feature.dsm_feedback.enable=false \
+vendor.display.use_smooth_motion=1 \
 vendor.audio.feature.dynamic_ecns.enable=true \
 vendor.audio.feature.ext_hw_plugin.enable=false \
 vendor.audio.feature.external_dsp.enable=false \
@@ -353,7 +369,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.vulkan=adreno \
     ro.hardware.egl=adreno \
-    ro.hwui.render_ahead=5
+	ro.hwui.render_ahead=5
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.kona.api30 \
@@ -362,8 +378,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
-    persist.sys.sf.color_mode=9 \
-    persist.sys.sf.native_mode=2 \
+    persist.sys.sf.color_mode=2 \
+    persist.sys.sf.native_mode=1 \
     debug.sf.hw=0 \
     debug.egl.hw=0 \
     debug.sf.latch_unsignaled=1 \
@@ -386,9 +402,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_gl_backpressure=1 \
     debug.sf.enable_advanced_sf_phase_offset=1 \
-    debug.sf.high_fps_late_sf_phase_offset_ns=-2000000 \
+    debug.sf.high_fps_late_sf_phase_offset_ns=-4000000 \
     debug.sf.high_fps_early_phase_offset_ns=-4000000 \
-    debug.sf.high_fps_early_gl_phase_offset_ns=-2000000
+    debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
 
 #Set WCG properties
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.has_wide_color_display=true
@@ -396,18 +412,22 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.has_HDR_display=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.wcg_composition_dataspace=143261696
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=4000
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.set_touch_timer_ms=200
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.max_virtual_display_dimension=4096
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.display.idle_time=4000 \
+    vendor.display.idle_time=0 \
     vendor.display.disable_idle_time_hdr=1 \
     vendor.display.disable_idle_time_video=1
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.set_idle_timer_ms=4000 \
+    ro.surface_flinger.set_idle_timer_ms=80 \
     ro.surface_flinger.use_content_detection_for_refresh_rate=true \
-    debug.sf.defer_refresh_rate_when_off=1
+	debug.sf.defer_refresh_rate_when_off=1
+# FS-verity
+PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
 
 # Recovery is enabled, logging is disabled
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -416,9 +436,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Enable power async mode
 PRODUCT_PROPERTY_OVERRIDES += vendor.display.enable_async_powermode=1
 # }}}
-
-# FS-verity
-PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
 
 # DPM {{{
 PRODUCT_PROPERTY_OVERRIDES += persist.vendor.dpmhalservice.enable=1
@@ -518,12 +535,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.enable_temp_dds=true
 # }}}
 
-#Test harmon kardon
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.vendor.audio.sfx.earadj=true \
-ro.vendor.audio.sfx.harmankardon=true \
-ro.vendor.audio.sfx.scenario=true
-
 # Sensors {{{
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.sensors.sync_request=true \
@@ -543,6 +554,11 @@ PRODUCT_PROPERTY_OVERRIDES += vendor.usb.qdss.inst.name=qdss
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.diag.func.name=diag
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_ffs_mtp=0
 # }}}
+
+# Radio VoNR Calling
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.is_vonr_enabled_0=true \
+    persist.radio.is_vonr_enabled_1=true
 
 # Misc {{{
 # Enable incremental FS feature

@@ -18,9 +18,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
-    <bool name="config_cellBroadcastAppLinks">true</bool>
-
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
@@ -161,9 +158,6 @@
     <string name="config_sysGPUFreq">"/sys/kernel/gpu/gpu_clock"</string>
     <string name="config_sysGPULoad">"/sys/kernel/gpu/gpu_busy"</string>
     <integer name="config_sysCPUTempMultiplier">1000</integer>
-    
-     <!-- Whether to use Richtap vibration -->
-    <bool name="config_usesRichtapVibration">false</bool>
     
     <!-- Delay that allows some content to arrive at the display before switching
          from DOZE to ON, in millis. -->
@@ -379,15 +373,16 @@
 
     <!--  Maximum number of supported users -->
     <integer name="config_multiuserMaximumUsers">4</integer>
+
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
-
 
     <!-- Config determines whether to update phone object when voice registration
     state changes. Voice radio tech change will always trigger an update of
     phone object irrespective of this config -->
     <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
-    <!--  Define Google play service package for FRP-->
+    
+	<!--  Define Google play service package for FRP-->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 
     <!--  Define optional package verifier name -->
@@ -399,11 +394,13 @@
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
         autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">true</bool>
-    <!-- Enable doze mode -->
+    
+	<!-- Enable doze mode -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
     <bool name="config_dozeAfterScreenOff">true</bool>
-    <!-- Screen brightness when dozing. -->
-    <integer name="config_screenBrightnessDoze">17</integer>
+    
+	<!-- Screen brightness when dozing. -->
+    <integer name="config_screenBrightnessDoze">10</integer>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
 
     <!-- The following two arrays specify which color space to use for display composition when a
@@ -465,11 +462,16 @@
 
     <!-- The default peak refresh rate for a given device. Change this value if you want to allow
          for higher refresh rates to be automatically used out of the box -->
-    <integer name="config_defaultPeakRefreshRate">240</integer>
+    <integer name="config_defaultPeakRefreshRate">144</integer>
+    
+    <!-- The default value for whether head tracking for
+         spatial audio is enabled for a newly connected audio device -->
+    <bool name="config_spatial_audio_head_tracking_enabled_default">true</bool>
 
     <!-- Whether to select voice/data/sms preference without user confirmation -->
     <bool name="config_voice_data_sms_auto_fallback">true</bool>
-    <!-- Package names to use with vendor iwlan implementation. -->
+    
+	<!-- Package names to use with vendor iwlan implementation. -->
     <string name="config_wlan_data_service_package" translatable="false">vendor.qti.iwlan</string>
     <string name="config_wlan_network_service_package" translatable="false">vendor.qti.iwlan</string>
     <string name="config_qualified_networks_service_package" translatable="false">vendor.qti.iwlan</string>
@@ -477,6 +479,32 @@
     <!-- set to false if we need to show user confirmation
          when alpha identifier is not provided by the UICC -->
     <bool name="config_stkNoAlphaUsrCnf">false</bool>
+
+   <!-- Enable Zram writeback feature to allow unused pages in zram be written to flash. -->
+    <bool name="config_zramWriteback">true</bool>
+	
+   <!-- Controls the navigation bar interaction mode:
+         0: 3 button mode (back, home, overview buttons)
+         1: 2 button mode (back, home buttons + swipe up for overview)
+         2: gestures only for back, home and overview -->
+    <integer name="config_navBarInteractionMode">2</integer>
+	
+	<!-- Path to fast charging status file to detect whether an oem fast charger is active -->
+    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/power_supply/battery/fastchg_status</string>
+    
+    <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
+         in hardware. -->
+    <bool name="config_setColorTransformAccelerated">true</bool>
+    
+    <!-- Flag indicating whether we should enable smart battery. -->
+    <bool name="config_smart_battery_available">true</bool>
+    
+    <!-- Defines the sysfs attribute path used by the device
+         to enable/disable DC dimming. -->
+    <string name="config_deviceDcDimmingSysfsNode">/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dsi_display_dc</string>
+    
+     <!-- See AmbientSensor.AmbientColorTemperatureSensor. The ambient color temperature sensor name. -->
+    <string name="config_displayWhiteBalanceColorTemperatureSensorName">com.google.sensor.color</string>
 
     <!-- Configure emergency apn as empty(null) apn -->
     <string name="config_emergency_apn" translatable="false"></string>

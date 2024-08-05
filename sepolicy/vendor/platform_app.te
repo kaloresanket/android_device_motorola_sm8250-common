@@ -2,3 +2,9 @@
 allow platform_app vendor_sysfs_battery_supply:dir search;
 allow platform_app vendor_sysfs_battery_supply:file r_file_perms;
 allow platform_app vendor_sysfs_kgsl:file r_file_perms;
+
+# Camera
+get_prop(platform_app, moto_boot_prop)
+get_prop(platform_app, audio_config_prop)
+allow platform_app moto_boot_prop:file { read };
+allow platform_app audio_config_prop:file { read };

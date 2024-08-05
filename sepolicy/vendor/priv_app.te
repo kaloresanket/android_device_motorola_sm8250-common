@@ -1,1 +1,3 @@
 allow priv_app metadata_file:dir { read };
+allow priv_app media_userdir_file:dir { read };
+allow priv_app proc_filesystems:file { read };

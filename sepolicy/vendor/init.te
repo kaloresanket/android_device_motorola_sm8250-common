@@ -14,9 +14,6 @@ allowxperm init loop_device:blk_file ioctl {
   BLKFLSBUF
 };
 
-# Allow init to set attribute to sysfs_kprofiles
-allow init sysfs_kprofiles:file { setattr };
-
 # Product persist
 allow init mnt_product_file:dir mounton;
 

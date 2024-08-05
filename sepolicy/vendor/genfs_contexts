@@ -17,10 +17,6 @@ genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-02/c440000.q
 # Input Devices
 genfscon sysfs /devices/virtual/input                                           u:object_r:vendor_sysfs_input:s0
 
-# KProfiles
-genfscon sysfs /module/kprofiles/parameters/auto_kprofiles u:object_r:sysfs_kprofiles:s0
-genfscon sysfs /module/kprofiles/parameters/kp_mode u:object_r:sysfs_kprofiles:s0
-
 # Lights
 genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-05/c440000.qcom,spmi:qcom,pm8150l@5:qcom,leds@d000/leds/charging u:object_r:sysfs_leds:s0
 
@@ -78,11 +74,4 @@ genfscon sysfs /devices/platform/soc/soc:et528/wakeup                           
 genfscon sysfs /devices/platform/soc/soc:fpc_fpc1020/wakeup                     u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:goodix_fingerprint/wakeup              u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,ipa_uc/wakeup                     u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/soc:qcom,smp2p-cdsp/wakeup                 u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/soc:qcom,smp2p-dsps/wakeup                 u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,smp2p-npu/wakeup/wakeup           u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/diag/diag/wakeup                                u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/984000.i2c/i2c-0/0-0008/wakeup/wakeup81    u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/884000.i2c/i2c-3/3-005a/wakeup/wakeup83    u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/platform/soc/a94000.i2c/i2c-2/2-0049/wakeup/wakeup82    u:object_r:sysfs_wakeup:s0
-genfscon sysfs /devices/virtual/input/input8/*				   u:object_r:sysfs_wakeup:s0
