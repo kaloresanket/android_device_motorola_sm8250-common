@@ -7,6 +7,7 @@
         <library name="reverb" path="libreverbwrapper.so"/>
         <library name="visualizer" path="libvisualizer.so"/>
         <library name="v4a_re" path="libv4a_re.so"/>
+        <library name="volume_listener" path="libvolumelistener.so"/>
         <library name="qcbassboost" path="libqcbassboost.so"/>
         <library name="qcvirt" path="libqcvirt.so"/>
         <library name="qcreverb" path="libqcreverb.so"/>
