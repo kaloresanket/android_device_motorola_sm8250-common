@@ -85,6 +85,9 @@ vendor.voice.path.for.pcm.voip=true
 PRODUCT_PROPERTY_OVERRIDES += \
 vendor.audio.offload.multiaac.enable=true
 
+# Audio Rotation
+ro.audio.monitorRotation=true
+
 #Enable DS2, Hardbypass feature for Dolby
 PRODUCT_PROPERTY_OVERRIDES += \
 vendor.audio.dolby.ds2.enabled=false\
