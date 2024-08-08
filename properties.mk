@@ -123,10 +123,6 @@ vendor.audio.safx.pbe.enabled=false
 PRODUCT_PROPERTY_OVERRIDES += \
 vendor.audio.parser.ip.buffer.size=262144
 
-#flac sw decoder 24 bit decode capability
-PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.flac.sw.decoder.24bit=true
-
 #split a2dp DSP supported encoder list
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac
@@ -142,12 +138,6 @@ persist.bluetooth.a2dp_offload.disabled=false
 # A2DP offload DSP supported encoder list
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd
-
-#enable software decoders for ALAC and APE
-PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.use.sw.alac.decoder=true
-PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.use.sw.ape.decoder=true
 
 #enable software decoder for MPEG-H
 PRODUCT_PROPERTY_OVERRIDES += \
