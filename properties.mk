@@ -47,6 +47,9 @@ ro.telephony.block_binder_thread_on_incoming_calls=false \
 vendor.display.qdcm.mode_combine=1 \
 debug.renderengine.backend=skiaglthreaded
 
+# Core Control
+ro.vendor.config.corectl=1
+
 # recorded
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.apptype.multirec.enabled=false
