@@ -151,10 +151,7 @@ PRODUCT_PACKAGES += \
     libsndmonitor
 
 PRODUCT_PACKAGES += \
-    libqcomvoiceprocessing \
-    libvolumelistener \
-    libeffectproxy \
-    libaudiopreprocessing
+    libqcomvoiceprocessing
 
 PRODUCT_PACKAGES += \
     firmware_aw_cali.bin_symlink
