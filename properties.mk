@@ -12,9 +12,6 @@ debug.sf.disable_backpressure=1 \
 ro.surface_flinger.enable_frame_rate_override=false
 
 # Audio
-persist.vendor.audio.spatializer.speaker_enabled=true
-ro.audio.spatializer_enabled=true
-af.resampler.quality=7
 ro.audio.resampler.psd.stopband=132
 ro.audio.resampler.psd.halflength=960
 ro.audio.resampler.psd.cutoff_percent=98

@@ -7,3 +7,17 @@ audio.spatializer.effect.util_clamp_min=300
 # Enable audio spatializer on speaker
 ro.audio.spatializer_transaural_enabled_default=false
 persist.vendor.audio.spatializer.speaker_enabled=true
+
+# RCS
+persist.vendor.rcs.singlereg.feature=1
+
+# Mic conifg feature
+ro.audio.lvacfs.enable=true
+
+# Better gaming audio
+ro.audio.relative_volume=true
+vendor.mm.enable.qcom_parser=135714
+ro.vendor.audio.game_mic.supported=true
+
+# Google Premier Tier
+ro.product.gms_premier_tier=true
