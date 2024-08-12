@@ -244,8 +244,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libcodec2_soft_h263dec \
     libcodec2_soft_h263enc \
-    libcodec2_soft_h264enc \
-    libcodec2_soft_h264dec \
     libcodec2_soft_mpeg4dec \
     libcodec2_soft_mpeg4enc \
     libcodec2_soft_vp8dec \
@@ -357,6 +355,7 @@ PRODUCT_COPY_FILES += \
 # Inherit several Android Go Configurations(Beneficial for everyone, even on non-Go devices)
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
+
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
@@ -393,6 +392,7 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 PRODUCT_VENDOR_PROPERTIES += \
     $(foreach tag,$(SPAMMY_LOG_TAGS),log.tag.$(tag)=E)
 endif
+
 # Media
 PRODUCT_PACKAGES += \
     libmm-omxcore \
@@ -441,7 +441,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libcodec2_hidl@1.0.vendor \
-    android.hardware.media.c2@1.0.vendor
+    android.hardware.media.c2@1.0.vendor \
     libcodec2_vndk.vendor \
     libOmxAacEnc \
     libOmxAmrEnc \
@@ -453,11 +453,11 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw \
-	libstagefright_amrnb_common.vendor \
+    libstagefright_amrnb_common.vendor \
     libstagefright_enc_common.vendor \
     libstagefright_softomx_plugin.vendor \
     libstagefright_softomx.vendor \
-	libvorbisidec.vendor \
+    libvorbisidec.vendor \
     libvpx.vendor
 
 # Perf
@@ -466,6 +466,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.perf@2.0.vendor \
     vendor.qti.hardware.perf@2.2.vendor \
     vendor.qti.hardware.perf@2.1.vendor
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
@@ -563,9 +564,11 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-service.multihal \
     libpower.vendor \
     libsensorndkbridge
+
 # Seccomp policy
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
@@ -576,7 +579,7 @@ PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 # Task Profiles
 PRODUCT_COPY_FILES += \
 	system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json \
-	system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json																			 
+	system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json
 
 # Telephony
 PRODUCT_PACKAGES += \
