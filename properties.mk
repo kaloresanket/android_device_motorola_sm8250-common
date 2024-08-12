@@ -562,8 +562,7 @@ PRODUCT_PROPERTY_OVERRIDES += vendor.usb.rmnet.inst.name=rmnet
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.dpl.inst.name=dpl
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.qdss.inst.name=qdss
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.diag.func.name=diag
-PRODUCT_PROPERTY_OVERRIDES += sys.usb.mtp.batchcancel=1
-PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_ffs_mtp=1
+PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_ffs_mtp=0
 # }}}
 
 # Radio VoNR Calling
