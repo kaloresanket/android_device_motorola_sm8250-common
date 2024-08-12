@@ -555,7 +555,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # }}}
 
 # USB {{{
-PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_gadget_hal=1
+PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_gadget_hal=0
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.rndis.func.name=gsi
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.rmnet.func.name=gsi
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.rmnet.inst.name=rmnet
@@ -565,7 +565,6 @@ PRODUCT_PROPERTY_OVERRIDES += vendor.usb.diag.func.name=diag
 PRODUCT_PROPERTY_OVERRIDES += sys.usb.mtp.batchcancel=1
 PRODUCT_PROPERTY_OVERRIDES += vendor.usb.use_ffs_mtp=1
 PRODUCT_PROPERTY_OVERRIDES += ro.usb.uvc.enabled=true
-PRODUCT_PROPERTY_OVERRIDES += vendor.usb.controller=a600000.dwc3
 # }}}
 
 # Radio VoNR Calling
