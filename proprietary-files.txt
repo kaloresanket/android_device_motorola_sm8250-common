@@ -879,7 +879,7 @@ vendor/lib64/libvideooptfeature.so
 
 # Snapdragon Computer Vision Engine
 vendor/lib/libfastcvdsp_stub.so
--vendor/lib/libfastcvopt.so
+vendor/lib/libfastcvopt.so
 vendor/lib/libscveCommon.so
 vendor/lib/libscveCommon_stub.so
 vendor/lib/libscveObjectSegmentation.so
@@ -887,7 +887,7 @@ vendor/lib/libscveObjectSegmentation_stub.so
 vendor/lib/libscveObjectTracker.so
 vendor/lib/libscveObjectTracker_stub.so
 vendor/lib64/libfastcvdsp_stub.so
--vendor/lib64/libfastcvopt.so
+vendor/lib64/libfastcvopt.so
 vendor/lib64/libscveCommon.so
 vendor/lib64/libscveCommon_stub.so
 vendor/lib64/libscveObjectSegmentation.so
@@ -909,9 +909,9 @@ vendor/bin/ssr_setup
 vendor/bin/thermal-engine
 vendor/etc/init/init_thermal-engine.rc
 vendor/etc/thermal-engine.conf
--vendor/lib/libthermalclient.so
+vendor/lib/libthermalclient.so
 vendor/lib64/libsystempioctl.so
--vendor/lib64/libthermalclient.so
+vendor/lib64/libthermalclient.so
 
 # Time services
 vendor/app/TimeService/TimeService.apk
