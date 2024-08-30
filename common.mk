@@ -208,6 +208,8 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.aon@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
+TARGET_BUILD_DEVICE_AS_WEBCAM := true
+
 # Charger
 PRODUCT_PACKAGES += \
     libsuspend \
