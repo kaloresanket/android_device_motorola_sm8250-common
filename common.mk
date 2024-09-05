@@ -21,6 +21,8 @@ PRODUCT_SHIPPING_API_LEVEL := 30
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
+$(call soong_config_set, android_hardware_audio, run_64bit, true)
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2520
 TARGET_SCREEN_WIDTH := 1080
