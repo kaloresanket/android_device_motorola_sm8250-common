@@ -61,9 +61,18 @@ persist.vendor.audio.fluence.tmic.enabled=false
 
 #test for aux Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.vendor.camera.logInfoMask=false
+persist.vendor.camera.logInfoMask=false \
 vendor.camera.aux.packagelist=com.snapchat.android,com.ss.android.ugc.aweme,org.codeaurora.snapcam \
 persist.vendor.camera.privapp.list=org.lineageos.aperture,com.ss.android.ugc.aweme,org.codeaurora.snapcam
+
+# Improve graphics
+PRODUCT_PROPERTY_OVERRIDES += \
+persist.sys.purgeable_assets=1 \
+# Touch hax
+ro.vendor.qti.cgroup_follow.enable=true \
+persist.vendor.qti.inputopts.enable=true \
+persist.vendor.qti.inputopts.movetouchslop=0.6 \
+ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
 
 # Pre-rendering
 PRODUCT_PROPERTY_OVERRIDES += \
