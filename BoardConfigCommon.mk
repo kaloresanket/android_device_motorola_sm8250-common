@@ -158,6 +158,9 @@ TARGET_FS_CONFIG_GEN := \
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 LOC_HIDL_VERSION := 4.0
 
+# Global Optimization
+TARGET_GLOBAL_OPTIMIZATION := O3
+
 # Lineage Health
 ifneq ($(wildcard hardware/*/interfaces/health),)
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
