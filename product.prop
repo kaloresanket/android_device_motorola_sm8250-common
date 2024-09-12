@@ -3,6 +3,7 @@ ro.audio.spatializer_enabled=true
 
 # Optimize spatializer effect
 audio.spatializer.effect.util_clamp_min=300
+af.resampler.quality=7
 
 # Enable audio spatializer on speaker
 ro.audio.spatializer_transaural_enabled_default=false
