@@ -12,11 +12,12 @@ debug.sf.disable_backpressure=1 \
 ro.surface_flinger.enable_frame_rate_override=false
 
 # Audio
-ro.audio.resampler.psd.stopband=132
-ro.audio.resampler.psd.halflength=960
-ro.audio.resampler.psd.cutoff_percent=98
-ro.audio.resampler.psd.tbwcheat=0
-ro.audio.usb.period_us=20375
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.audio.resampler.psd.stopband=132 \
+ro.audio.resampler.psd.halflength=960 \
+ro.audio.resampler.psd.cutoff_percent=98 \
+ro.audio.resampler.psd.tbwcheat=0 \
+ro.audio.usb.period_us=20375 \
 persist.bluetooth.sbc_hd_higher_bitrate=1
 
 # Adaptive Suspend
