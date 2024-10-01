@@ -111,11 +111,6 @@ vendor.audio.offload.multiaac.enable=true
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.audio.monitorRotation=true
 
-#Enable DS2, Hardbypass feature for Dolby
-PRODUCT_PROPERTY_OVERRIDES += \
-vendor.audio.dolby.ds2.enabled=false\
-vendor.audio.dolby.ds2.hardbypass=false
-
 #Disable Multiple offload sesison
 PRODUCT_PROPERTY_OVERRIDES += \
 vendor.audio.offload.multiple.enabled=false
