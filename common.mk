@@ -617,7 +617,7 @@ PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp \
     libavservices_minijail \
     libgui_shim \
-    libinput_shim
+    libinput_shim \
     libnl \
     libavservices_minijail_vendor \
     libpng.vendor \
