@@ -39,7 +39,6 @@ libs_add_vendor_suffix = (
 
 libs_remove = (
     'libqsap_sdk',
-    'libril',
     'libwpa_client',
 )
 
