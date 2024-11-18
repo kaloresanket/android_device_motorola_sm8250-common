@@ -502,6 +502,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.crypto.volume.metadata.method=dm-default-key
 # }}}
 
+# LMK {{{
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.swap_free_low_percentage=10 \
+    ro.lmk.swap_util_max=90 \
+    ro.lmk.thrashing_limit=50 \
+    ro.lmk.thrashing_limit_decay=25 \
+    ro.lmk.psi_complete_stall_ms=80 \
+    ro.lmk.psi_partial_stall_ms=50
+# }}}
+
 # Media {{{
 # Create input surface on the framework side
 PRODUCT_PROPERTY_OVERRIDES += \
