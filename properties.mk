@@ -48,6 +48,13 @@ debug.renderengine.backend=skiaglthreaded
 # Core Control
 ro.vendor.config.corectl=1
 
+# Dolby
+persist.vendor.audio_fx.current=dolby
+vendor.audio.dolby.ds2.enabled=true
+vendor.audio.dolby.ds2.hardbypass=true
+ro.vendor.audio.dolby.dax.support=true
+ro.vendor.dolby.dax.version=DAX3_3.6.0.12_r1
+
 # recorded
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.audio.apptype.multirec.enabled=false
