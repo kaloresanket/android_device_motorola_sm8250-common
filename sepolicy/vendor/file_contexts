@@ -40,12 +40,7 @@
 /sys/devices/virtual/input/input[0-9]+/offset           u:object_r:vendor_sysfs_laser:s0
 /sys/devices/virtual/input/input[0-9]+/xtalk            u:object_r:vendor_sysfs_laser:s0
 /data/vendor/misc/imager(/.*)?                          u:object_r:vendor_imager_data_file:s0
-/data/vendor/misc/imager/metadata(/.*)?                 u:object_r:vendor_imager_metadata_file:s0																							 
-
-# Dolby
-/data/vendor/dolby(/.*)?                                                               u:object_r:vendor_data_file:s0
-/(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service               u:object_r:hal_dms_default_exec:s0
-/(vendor|system/vendor|odm)/bin/hw/vendor\.dolby_v3_6\.hardware\.dms360@2\.0-service   u:object_r:hal_dms_default_exec:s0
+/data/vendor/misc/imager/metadata(/.*)?                 u:object_r:vendor_imager_metadata_file:s0
 
 # Fingerprint
 /(mnt/vendor/persist|persist)/egis(/.*)?                u:object_r:vendor_persist_fps_file:s0
