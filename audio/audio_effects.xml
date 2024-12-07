@@ -82,6 +82,7 @@
             <apply effect="gamedap_mod"/>
         </stream>
     </postprocess>
+    <preprocess>
         <stream type="voice_communication">
             <apply effect="aec"/>
             <apply effect="ns"/>
