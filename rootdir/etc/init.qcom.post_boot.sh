@@ -3445,8 +3445,11 @@ case "$target" in
             echo 100 > /proc/sys/kernel/sched_group_upmigrate
 
             # cpuset settings
-            echo 0-3 > /dev/cpuset/background/cpus
+            echo 0-2 > /dev/cpuset/background/cpus
             echo 0-3 > /dev/cpuset/system-background/cpus
+			echo 4-7     > /dev/cpuset/foreground/boost/cpus
+            echo 0-2,4-7 > /dev/cpuset/foreground/cpus
+            echo 0-7     > /dev/cpuset/top-app/cpus
 
 
             # configure governor settings for little cluster
@@ -3956,9 +3959,13 @@ case "$target" in
         if [ "$corectl_enable" == "true" ]; then
             echo 0-3 > /dev/cpuset/background/cpus
         else
-            echo 0-5 > /dev/cpuset/background/cpus
+            echo 0-2 > /dev/cpuset/background/cpus
         fi
-        echo 0-5 > /dev/cpuset/system-background/cpus
+        echo 0-3 > /dev/cpuset/system-background/cpus
+		
+		echo 4-7     > /dev/cpuset/foreground/boost/cpus
+        echo 0-2,4-7 > /dev/cpuset/foreground/cpus
+        echo 0-7     > /dev/cpuset/top-app/cpus
 
         # Turn off scheduler boost at the end
         echo 0 > /proc/sys/kernel/sched_boost
@@ -4116,8 +4123,11 @@ case "$target" in
         # moto end
 
         # cpuset parameters
-        echo 0-5 > /dev/cpuset/background/cpus
-        echo 0-5 > /dev/cpuset/system-background/cpus
+        echo 0-2 > /dev/cpuset/background/cpus
+        echo 0-3 > /dev/cpuset/system-background/cpus
+		echo 4-7     > /dev/cpuset/foreground/boost/cpus
+        echo 0-2,4-7 > /dev/cpuset/foreground/cpus
+        echo 0-7     > /dev/cpuset/top-app/cpus
 
         # Turn off scheduler boost at the end
         echo 0 > /proc/sys/kernel/sched_boost
