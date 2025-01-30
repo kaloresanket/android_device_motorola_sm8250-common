@@ -7,3 +7,6 @@ allow kernel {
 }:blk_file rw_file_perms;
 
 r_dir_file(kernel, fsg_file)
+
+# ZRAM
+allow kernel per_boot_file:file r_file_perms;

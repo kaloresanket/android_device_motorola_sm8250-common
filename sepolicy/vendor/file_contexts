@@ -88,3 +88,6 @@
 /(vendor|system/vendor)/bin/init\.oem\.fingerprint2\.sh         u:object_r:vendor_init_fingerprint_exec:s0
 /(vendor|system/vendor)/bin/init\.oem\.fingerprint\.overlay\.sh u:object_r:vendor_init_fingerprint_exec:s0
 /(vendor|system/vendor)/bin/init\.oem\.hw\.sh                   u:object_r:vendor_init_hw_exec:s0
+
+# ZRAM
+/data/per_boot(/.*)?                                            u:object_r:per_boot_file:s0
