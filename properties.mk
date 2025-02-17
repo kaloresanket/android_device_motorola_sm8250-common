@@ -48,12 +48,10 @@ debug.renderengine.backend=skiaglthreaded
 # Core Control
 ro.vendor.config.corectl=1
 
-# Dolby
-persist.vendor.audio_fx.current=dolby
-vendor.audio.dolby.ds2.enabled=true
-vendor.audio.dolby.ds2.hardbypass=true
-ro.vendor.audio.dolby.dax.support=true
-ro.vendor.dolby.dax.version=DAX3_3.6.0.12_r1
+#Enable DS2, Hardbypass feature for Dolby
+PRODUCT_PROPERTY_OVERRIDES += \
+vendor.audio.dolby.ds2.enabled=false\
+vendor.audio.dolby.ds2.hardbypass=false
 
 # recorded
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -634,6 +632,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.ssr.restart_level=ALL_ENABLE \
     vendor.build.customerid=retcn \
     ro.vendor.mot.factory=false
+
+# ZRAM writeback {{{
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.zram.mark_idle_delay_mins=60 \
+    ro.zram.first_wb_delay_mins=1440 \
+    ro.zram.periodic_wb_delay_hours=24
+# }}}
 
 # Enable zygote critical window.
 PRODUCT_PROPERTY_OVERRIDES += \
